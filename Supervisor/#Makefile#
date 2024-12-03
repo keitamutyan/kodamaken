@@ -1,0 +1,14 @@
+DIRECTORY=net3
+TARGET=vnic
+ifneq ($(KERNELRELEASE),)
+obj-m:=$(TARGET).o
+else
+KERN_DIR=/lib/modules/`uname -r`/build
+default:
+	$(MAKE) -C $(KERN_DIR) SUBDIRS=`pwd` modules
+
+clean:
+	rm -fr *.o *.ko *.mod.o *.mod.c .*.cmd  Module.* .tmp* *.tgz pingd
+tar:
+	(cd ..;tar cvfz  $(DIRECTORY).tgz $(DIRECTORY)/load $(DIRECTORY)/unload $(DIRECTORY)/Makefile $(DIRECTORY)/*.c; mv $(DIRECTORY).tgz $(DIRECTORY)/$(DIRECTORY).tgz)
+endif

@@ -1,0 +1,13 @@
+#!/bin/sh
+modname=visor
+devname=Supervisor
+mod=`ls  /dev/ | grep $devname`
+echo $mod
+if [ "$mod" == "" ]; then
+	echo No device file
+else
+	echo remove device file /dev/$mod
+	rm -f /dev/$mod
+fi
+rmmod $modname
+	

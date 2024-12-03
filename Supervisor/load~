@@ -1,0 +1,11 @@
+#!/bin/sh
+modname=visor
+devname=Supervisor
+/sbin/insmod ./$modname.ko || exit 1
+major=$(awk "\$2==\"$devname\" {print \$1}" /proc/devices)
+echo major=$major
+rm -f /dev/$devname
+mknod /dev/$devname c $major 0
+chmod 666 /dev/$devname
+ls -la /dev/$devname
+ifconfig Supervisor ${1}
