@@ -94,7 +94,7 @@
 
 - ネットワークマネージャーを止める
     ```sh
-    sudo systemctl disable NetworkManager
+    sudo systemctl stop NetworkManager
     ```
 
 - arp確認方法
