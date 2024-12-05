@@ -1,0 +1,78 @@
+    1  ifconfig
+    2  yum -y install emacs
+    3  systemctl  disable  firewalld
+    4  emacs /etc/selinux/config 
+    5  reboot
+    6  sudo  dnf  install  kernel-devel-$(uname -r)  kernel-headers-$(uname -r) gcc make
+    7  cat  /etc/os-release 
+    8  uname -r
+    9  mkdir vnic
+   10  cd vnic
+   11  ls -al
+   12  ifconfig | grep inet
+   13  ls -al
+   14  unzip VNIC.zip 
+   15  ls -al
+   16  cd Supervisor/
+   17  ls -al
+   18  mv Makefile _Makefile__
+   19  cp ../Makefile 
+   20  cp ../Makefile  ./
+   21  ls  /lib/modules/$(uname -r)/build
+   22  make
+   23  ls -
+   24  ls -al
+   25  cp Makefile Bak_Makefile
+   26  emacs Makefile
+   27  make
+   28  emacs Makefile
+   29  ls  /lib/modules/$(uname -r)/build
+   30  emacs Makefile
+   31  make
+   32  emacs Makefile
+   33  make
+   34  ls -al *o
+   35  emacs Makefile
+   36  make
+   37  ls
+   38  cp vnic2.c~ vnic.c
+   39  make
+   40  emacs /root/vnic/Supervisor/vnic.c  &
+   41  make
+   42  ls -al
+   43  make clean
+   44  make
+   45  ls -al
+   46  ls -alt
+   47  cat Makefile
+   48  dmesg  |  tail
+   49  insmod  vnic.ko
+   50  dmesg  |  tail
+   51  ip  link show
+   52  ifconfig
+   53  emacs /root/vnic/Supervisor/vnic.c  &
+   54  pwd
+   55  cd ../
+   56  ls -al
+   57  zip -r Supervisor_VNIC.zip ./Supervisor/
+   58  ls -al
+   59  shudown -h now
+   60  shutdown -h now
+   61  ifconfig
+   62  cd vnic/Supervisor/
+   63  ismod  vnic.ko 
+   64  clear
+   65  insmod  vnic.ko 
+   66  ifconfig
+   67  shutdown -h now
+   68  ifconfig
+   69  ls
+   70  cd vnic/
+   71  ls
+   72  cd Supervisor/
+   73  ls
+   74  history > history.txt
+   75  history 
+   76  insmod  vnic.ko
+   77  ifconfig
+   78  history > history_vnic_01.txt 

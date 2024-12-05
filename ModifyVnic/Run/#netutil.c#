@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <arpa/inet.h>
+#include <sys/socket>
+#include <linux/if.h>
+#include <net/ethernet.h>
+#include <netpacket/packet.h>
+#include <netinet/if_ether.h>
+
+extern int DebugPrintf(char *fmt,...);
+extern int DebugPerror(char *msg);
+
+int ini

@@ -1,0 +1,34 @@
+IPオプション領域へ最大長0x01を埋め込む場合の手順説明
+
+実験環境:
+Raspberry Pi2 with CentOS 7.6 2台をEthernetケーブルで接続
+
+フォルダ構成
+	Supervisorフォルダ
+		ブリッジにおいて自身の端末のIPを設定する仮想ネットワークインターフェースカード (virtual NIC) 定義ソースコード群が格納。
+
+	Runフォルダ
+		ブリッジ実行ファイルが格納されている。
+		main.cにてパケット処理を記述。
+
+プログラム実行
+	実行手順1. SELinuxをdisabledもしくはpermissiveにし、再起動。
+
+	実行手順2. NetworkManager及びfirewalldをサービス停止状態にする。 (例: systemctl stop NetworkManager)
+
+	実行手順3. IP forwardingを無効化する。
+
+	実行手順4. 物理NIC(enp~)を初期化する。 (例: ifconfig enp2s0 0)
+
+	実行手順5. Runフォルダに移動し、コマンド "sh make.sh 自身のIPアドレス デフォルトゲートウェイアドレス"　実行。 (例: "sh make.sh 192.168.20.100 192.168.20.1")
+
+	実効手順6. オプション領域（40 bytes）分 MTU を減らす "ifconfig NIC名 mtu 1460"
+
+	実行手順7. 同フォルダ内で、コマンド "./bridge" 実行。
+
+	実行手順8. "/etc/resolve.conf"ファイルに　"nameserver 手順5で指定したデフォルトゲートウェイアドレス"　を一行追加。 (例: "nameserver 192.168.20.1")
+
+	実行手順9. pingコマンドで他方のラスパイへアクセス。アクセス受信側のラズパイでオプション領域の内容(0x01, 0x01, 0x01, ..., 0x01)が表示されるか確かめる。
+
+以上です。
+質問等あればメールください。 6316627rei@net.lab.uec.ac.jp
