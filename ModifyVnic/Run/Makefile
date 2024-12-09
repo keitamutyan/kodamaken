@@ -1,0 +1,8 @@
+OBJS=main.o analysis.o createArp.o init.o rewrite.o checksum.o murmur3.o dhcp.o
+SRCS=$(OBJS:%.o=%.c)
+CFLAGS=-g -Wall
+#LDLIBS= -lssl -lcrypto
+#LDFLAGS= -lpthread
+TARGET=bridge
+$(TARGET):$(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(TARGET) $(OBJS) $(LDLIBS)
